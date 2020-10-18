@@ -1,0 +1,27 @@
+{
+  "name": "redaxted",
+  "version": "0.1.0",
+  "description": "Tools for redacting the noise of Redux",
+  "main": "index.js",
+  "repository": "https://github.com/baccigalupi/redaxted",
+  "author": "Kane Baccigalupi",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/register": "^7.12.1",
+    "@babel/runtime": "^7.12.1",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.0"
+  },
+  "peerDependencies": {
+    "redux": ">3.0"
+  },
+  "scripts": {
+    "test": "mocha --recursive --require @babel/register ./test/**/*.test.js"
+  }
+}
