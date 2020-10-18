@@ -212,6 +212,9 @@ const reducer = composeReducers([
 ## Developing
 
 This is open source. Use issues, PRs and other methods to request or suggest
-changes. There is a code of conduct. Tests can be run with `yarn test` or
-`npm test` depending on your flavor of runner.
+changes. There is a code of conduct. Tests can be run with `yarn test`.
 
+# Building from source
+
+The source uses es6 and so `index.js` the entry point is a Babel compiled 
+version of that code. You can rebuild on your branch with `yarn build`.
