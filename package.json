@@ -1,6 +1,6 @@
 {
   "name": "redaxted",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Tools for redacting the noise of Redux",
   "main": "index.js",
   "repository": "https://github.com/baccigalupi/redaxted",

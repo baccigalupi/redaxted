@@ -5,6 +5,8 @@ export const createReducer = (event) => {
   }
 
   const reducer = (originalState = reducer.initial, action = {}) => {
+    if (typeof originalState === 'function') originalState = originalState()
+    
     const { type, payload } = action
     if (type !== event || !reducer.transformer) return originalState
 

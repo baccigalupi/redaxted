@@ -42,4 +42,16 @@ describe('createReducer', () => {
     const newState = reducer()
     assert.equal(newState, 'World')
   })
+
+  it('delays the evaluation of initial state when provided a function', () => {
+    const reducer = createReducer('hello')
+      .transform((_oldState, newState) => newState)
+      .initialState(() => notHereYet)
+
+    global.notHereYet = 'hi!'
+
+    assert.equal(reducer(), 'hi!')
+
+    global.notHereYet = undefined
+  })
 })
