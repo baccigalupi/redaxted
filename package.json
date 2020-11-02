@@ -1,6 +1,6 @@
 {
   "name": "redaxted",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tools for redacting the noise of Redux",
   "main": "index.js",
   "repository": "https://github.com/baccigalupi/redaxted",
@@ -23,6 +23,6 @@
   },
   "scripts": {
     "test": "mocha --recursive --require @babel/register ./test/**/*.test.js",
-    "build": "babel src/index.js --out-file index.js"
+    "build": "yarn babel src --out-file index.js"
   }
 }

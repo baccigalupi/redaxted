@@ -1,4 +1,4 @@
-import { createReducer, composeReducers } from '../src/index'
+import { createReducer, composeReducers } from '../index'
 
 import { assert } from 'chai'
 
