@@ -18,8 +18,8 @@ const composeReducers = reducers => {
     return reducer;
   };
 
-  reducer.debug = log => {
-    reducer.log = log || console.log;
+  reducer.debug = (log = console.log) => {
+    reducer.log = log;
     reducer.debugging = true;
     return reducer;
   };
