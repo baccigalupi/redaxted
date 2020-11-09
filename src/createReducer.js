@@ -1,4 +1,3 @@
-
 export const createReducer = (event) => {
   if (typeof event === 'function') {
     event = event().type
@@ -10,7 +9,17 @@ export const createReducer = (event) => {
     const { type, payload } = action
     if (type !== event || !reducer.transformer) return originalState
 
-    return reducer.transformer(originalState, payload)
+    const finalState = reducer.transformer(originalState, payload)
+
+    if (reducer.debugging) {
+      reducer.log('REDAXTED-DEBUG', {
+        originalState,
+        action,
+        finalState
+      })
+    }
+
+    return finalState
   }
 
   reducer.transform = (transformer) => {
@@ -20,6 +29,12 @@ export const createReducer = (event) => {
 
   reducer.initialState = (state) => {
     reducer.initial = state
+    return reducer
+  }
+
+  reducer.debug = (log = console.log) => {
+    reducer.log = log
+    reducer.debugging = true
     return reducer
   }
 
