@@ -7,13 +7,20 @@ exports.composeReducers = void 0;
 
 const composeReducers = reducers => {
   const reducer = (state = reducer.initial, actionData) => {
-    return reducers.reduce((latestState, reducer) => {
-      return reducer(latestState, actionData);
+    return reducers.reduce((latestState, partial) => {
+      if (reducer.debugging) partial.debug(reducer.log);
+      return partial(latestState, actionData);
     }, state);
   };
 
   reducer.initialState = state => {
     reducer.initial = state;
+    return reducer;
+  };
+
+  reducer.debug = log => {
+    reducer.log = log || console.log;
+    reducer.debugging = true;
     return reducer;
   };
 
@@ -80,7 +87,17 @@ const createReducer = event => {
       payload
     } = action;
     if (type !== event || !reducer.transformer) return originalState;
-    return reducer.transformer(originalState, payload);
+    const finalState = reducer.transformer(originalState, payload);
+
+    if (reducer.debugging) {
+      reducer.log('REDAXTED-DEBUG', {
+        originalState,
+        action,
+        finalState
+      });
+    }
+
+    return finalState;
   };
 
   reducer.transform = transformer => {
@@ -90,6 +107,12 @@ const createReducer = event => {
 
   reducer.initialState = state => {
     reducer.initial = state;
+    return reducer;
+  };
+
+  reducer.debug = (log = console.log) => {
+    reducer.log = log;
+    reducer.debugging = true;
     return reducer;
   };
 

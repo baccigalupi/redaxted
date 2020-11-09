@@ -1,6 +1,7 @@
 import { createReducer, composeReducers } from '../index'
 
 import { assert } from 'chai'
+import sinon from 'sinon'
 
 describe('composeReducers', () => {
   it('works with one reducer', () => {
@@ -68,5 +69,29 @@ describe('composeReducers', () => {
     ]).initialState(['solid gold!'])
 
     assert.deepEqual(reducer(), ['solid gold!'])
+  })
+
+  it('will log when debugging', () => {
+    const addReducer = createReducer('addToThings')
+      .transform((state, payload) => [...state, payload])
+
+    const removeReducer = createReducer('removeFromThings')
+      .transform((state, payload) => {
+        return state.filter((element) => element !== payload)
+      })
+
+    const reducer = composeReducers([
+      addReducer,
+      removeReducer
+    ])
+
+
+    const log = sinon.fake()
+    reducer.debug(log)
+
+    const newState = reducer([], {type: 'addToThings', payload: 'thing 1'})
+    reducer(newState, {type: 'removeFromThings', payload: 'thing 1'})
+
+    assert.equal(log.callCount, 2)
   })
 })

@@ -1,6 +1,7 @@
 import { createReducer } from '../src/createReducer'
 
 import { assert } from 'chai'
+import sinon from 'sinon'
 
 describe('createReducer', () => {
   it('returns original state without a transformer', () => {
@@ -53,5 +54,22 @@ describe('createReducer', () => {
     assert.equal(reducer(), 'hi!')
 
     global.notHereYet = undefined
+  })
+
+  it('debbuging prints debugging info to log', () => {
+    const reducer = createReducer('hello')
+      .transform((_oldState, newState) => newState)
+      .initialState('World')
+    const log = sinon.fake()
+    reducer.debug(log)
+
+    const action = {type: 'hello', payload: 'world'}
+    reducer('', action)
+    assert.equal(reducer.log.firstArg, 'REDAXTED-DEBUG')
+    assert.deepEqual(log.lastArg, {
+      originalState: '',
+      action: action,
+      finalState: 'world'
+    })
   })
 })
