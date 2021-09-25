@@ -208,6 +208,38 @@ const reducer = composeReducers([
   removeReducer
 ]).initialState([])
 ```
+### Combining reducers
+
+Redux comes out of the box with a `combineReducers` function that maps parts
+of the store to a specific reducer. That usually looks like this:
+
+```javascript
+const combineReducers({
+  users: usersReducer,
+  applicationStatus: statusReducers,
+  // ... etc
+});
+```
+
+That out of the box solution works most of the time and is very performant! 
+Occasionally Redux will complain when combining complex data/reducers. This mostly
+happens when trying to coerce the sharing of data between slices of data. If
+you don't run into this issue, we recommend that you continue to use Redux's version.
+If it does happen to you, switch over and use this function instead!
+
+## Use with Deno
+
+The file in `./src/index` is a good entry point for Deno work. You can include it
+via this import statement:
+
+```javascript
+import {
+  composeReducers,
+  createAction,
+  createActions,
+  createReducer,
+} from 'https://raw.githubusercontent.com/baccigalupi/redaxted/main/src/index.js';
+```
 
 ## Developing
 

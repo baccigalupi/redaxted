@@ -24,6 +24,6 @@
   },
   "scripts": {
     "test": "mocha --recursive --require @babel/register ./test/**/*.test.js",
-    "build": "yarn babel src --out-file index.js"
+    "build": "yarn babel src/index.js --out-file index.js"
   }
 }
