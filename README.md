@@ -238,7 +238,7 @@ import {
   createAction,
   createActions,
   createReducer,
-} from 'https://raw.githubusercontent.com/baccigalupi/redaxted/main/src/index.js';
+} from 'https://raw.githubusercontent.com/baccigalupi/redaxted/main/mod.js';
 ```
 
 ## Developing

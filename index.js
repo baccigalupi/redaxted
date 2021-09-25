@@ -34,10 +34,10 @@ Object.defineProperty(exports, "combineReducers", {
   }
 });
 
-var _createActions = require("./src/createActions.js");
+var _createActions = require("./createActions.js");
 
-var _composeReducers = require("./src/composeReducers.js");
+var _composeReducers = require("./composeReducers.js");
 
-var _createReducer = require("./src/createReducer.js");
+var _createReducer = require("./createReducer.js");
 
-var _combineReducers = require("./src/combineReducers");
+var _combineReducers = require("./combineReducers");
